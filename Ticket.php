@@ -5,13 +5,16 @@ class Ticket {
     private $_argv;
     private $_summary;
     private $_apiKey;
+    private $_issueKey;
 
     public function __construct($argv)
     {
         $this->_argv = $argv;
         $this->checkArgs();
         $this->getApiKey();
+
         /* $this->createProject(); */
+        $this->_issueKey = '407ONEMP-71';
 
         /* $this->createFolder(); */
         /* $this->createBranch(); */
@@ -60,14 +63,34 @@ class Ticket {
             )
         );
         $response = file_get_contents($url, false, stream_context_create($context));
+        $this->_issueKey = json_decode($response, true)['issueKey'];
         return;
     }
 
     /* Create a project folder */
+    public function createFolder()
+    {
+    }
+
     /* Create Branch */
+    public function createBranch()
+    {
+    }
+
     /* Create SVN */
+    public function createSvn()
+    {
+    }
+
     /* Create MEMO.md */
+    public function createMemo()
+    {
+    }
+
     /* Update ticket document */
+    public function updateTicket()
+    {
+    }
 }
 
 /* Test */
