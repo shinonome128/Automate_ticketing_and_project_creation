@@ -12,13 +12,11 @@ class Ticket {
         $this->_argv = $argv;
         $this->checkArgs();
         $this->getApiKey();
-
         /* $this->createProject(); */
         $this->_issueKey = '407ONEMP-71';
-
         /* $this->createFolder(); */
         /* $this->createBranch(); */
-        /* $this->createSvn(); */
+        $this->createSvn();
         /* $this->createMemo(); */
         /* $this->updateTicket(); */
     }
@@ -70,11 +68,49 @@ class Ticket {
     /* Create a project folder */
     public function createFolder()
     {
+        $directory = '/Users/mototsugu.kuroda/Documents/'.$this->_issueKey.'-'.$this->_summary;
+        mkdir($directory, 0777);
+        symlink('/Users/mototsugu.kuroda/Documents/knowledge/ACCOUNTS.md', $directory.'./ACCOUNTS.md');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda', $directory.'/gotanda');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda-tool', $directory.'/gotanda-tool');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/superior', $directory.'/superior');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/onet', $directory.'/onet');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/vm-manager', $directory.'/vm-manager');
+        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/0.3.0_DB', $directory.'/DB');
     }
 
     /* Create Branch */
     public function createBranch()
     {
+        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda';
+        chdir($path);
+        exec('git checkout master');
+        /* exec('git pull'); */
+        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
+
+        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda-tool';
+        chdir($path);
+        exec('git checkout master');
+        /* exec('git pull'); */
+        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
+
+        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/superior';
+        chdir($path);
+        exec('git checkout master');
+        /* exec('git pull'); */
+        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
+
+        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/onet';
+        chdir($path);
+        exec('git checkout master');
+        /* exec('git pull'); */
+        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
+
+        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/vm-manager';
+        chdir($path);
+        exec('git checkout master');
+        /* exec('git pull'); */
+        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
     }
 
     /* Create SVN */
@@ -94,7 +130,7 @@ class Ticket {
 }
 
 /* Test */
-$argv[1] = 'api_test';
+$argv[1] = 'fuga';
 
 /* Done */
 $a = new Ticket($argv);
