@@ -83,31 +83,31 @@ class Ticket {
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda';
         chdir($path);
         exec('git checkout master');
-        exec('git pull');
+        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
 
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda-tool';
         chdir($path);
         exec('git checkout master');
-        exec('git pull');
+        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
 
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/superior';
         chdir($path);
         exec('git checkout master');
-        exec('git pull');
+        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
 
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/onet';
         chdir($path);
         exec('git checkout master');
-        exec('git pull');
+        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
 
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/vm-manager';
         chdir($path);
         exec('git checkout master');
-        exec('git pull');
+        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
     }
 

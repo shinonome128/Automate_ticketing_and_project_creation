@@ -21,9 +21,9 @@ Put new ticket name.
 
 # Files and directory
 
-./Automate_ticketing_and_project_creation
-├── MEMO.md
-├── MEMO.md.sample
-├── README.md
-├── Ticket.php
-└── settings.ini.sample
+    ./Automate_ticketing_and_project_creation
+    ├── MEMO.md
+    ├── MEMO.md.sample
+    ├── README.md
+    ├── Ticket.php
+    └── settings.ini.sample
