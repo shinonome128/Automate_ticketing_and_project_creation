@@ -2,3 +2,7 @@ settings.ini
 testdir
 ACCOUNTS.md
 MEMO.md
+vendor
+
+.phpunit.result.cache
+phpinfo.php
