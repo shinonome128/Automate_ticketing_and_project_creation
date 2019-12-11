@@ -14,16 +14,14 @@ class Ticket {
         $this->_summary = $this->checkArgs();
         $this->_apiKey = $this->getApiKey();
         $this->_issueKey = $this->createProject();
-        /* $this->_issueKey = '407ONEMP-82'; */
         $this->_directory = '/Users/mototsugu.kuroda/Documents/'.$this->_issueKey.'-'.$this->_summary;
         $this->createFolder();
         $this->createBranch();
         $this->createMemo();
         $this->createSvn();
-        /* $this->updateTicket(); */
     }
 
-    /* Check args */
+    // Check args
     public function checkArgs()
     {
         if (count($this->_argv) < 2) {
@@ -32,14 +30,14 @@ class Ticket {
         return $this->_argv[1];
     }
 
-    /* Get api key */
+    // Get api key
     public function getApiKey()
     {
         $settings = parse_ini_file('settings.ini');
         return $settings['apiKey'];
     }
 
-    /* Create backlog ticket */
+    // Create backlog ticket
     public function createProject()
     {
         $description = 'detail';
@@ -64,54 +62,27 @@ class Ticket {
         return json_decode($response, true)['issueKey'];
     }
 
-    /* Create a project folder */
+    // Create a project folder
     public function createFolder()
     {
         mkdir($this->_directory, 0777);
-        symlink('/Users/mototsugu.kuroda/Documents/knowledge/ACCOUNTS.md', $this->_directory.'/ACCOUNTS.md');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda', $this->_directory.'/gotanda');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda-tool', $this->_directory.'/gotanda-tool');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/superior', $this->_directory.'/superior');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/onet', $this->_directory.'/onet');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/vm-manager', $this->_directory.'/vm-manager');
-        symlink('/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/0.3.0_DB', $this->_directory.'/DB');
     }
 
-    /* Create Branch */
+    // Create Branch
     public function createBranch()
     {
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda';
         chdir($path);
         exec('git checkout master');
-        /* exec('git pull'); */
-        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
-
-        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/gotanda-tool';
-        chdir($path);
-        exec('git checkout master');
-        /* exec('git pull'); */
-        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
-
-        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/superior';
-        chdir($path);
-        exec('git checkout master');
-        /* exec('git pull'); */
-        exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
-
-        $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/sources/onet';
-        chdir($path);
-        exec('git checkout master');
-        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
 
         $path = '/Users/mototsugu.kuroda/Documents/Onet_make_dev_0.2.1/vm-manager';
         chdir($path);
         exec('git checkout master');
-        /* exec('git pull'); */
         exec('git checkout -b feature/'.$this->_issueKey.'/'.$this->_summary);
     }
 
-    /* Create MEMO.md */
+    //Create MEMO.md
     public function createMemo()
     {
         chdir(dirname(__FILE__));
@@ -121,7 +92,7 @@ class Ticket {
         file_put_contents($this->_directory.'/MEMO.md', $str);
     }
 
-    /* Create SVN */
+    // Create SVN
     public function createSvn()
     {
         chdir($this->_directory);
@@ -132,15 +103,7 @@ class Ticket {
         exec('svn commit -m "Add first commit"');
     }
 
-    /* Update ticket document */
-    public function updateTicket()
-    {
-        // ToDo
-    }
 }
 
-/* Test */
-/* $argv[1] = 'fugahoge'; */
-
-/* Done */
+// Done
 $a = new Ticket($argv);
